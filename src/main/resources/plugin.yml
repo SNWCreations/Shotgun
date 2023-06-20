@@ -1,0 +1,11 @@
+name: Shotgun
+version: '${project.version}'
+main: snw.shotgun.Shotgun
+api-version: 1.16
+author: SNWCreations
+description: The shotgun plugin.
+website: https://github.com/SNWCreations
+
+commands:
+  webgun:
+    description: "Get the gun which use the cobweb as the"
