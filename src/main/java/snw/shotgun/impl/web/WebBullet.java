@@ -11,17 +11,25 @@ import org.bukkit.scoreboard.Team;
 import snw.shotgun.AbstractBullet;
 import snw.shotgun.Shotgun;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public final class WebBullet extends AbstractBullet {
     private final Shotgun plugin;
     public static final ItemStack ITEM;
+    public static final int MAX_DISTANCE = 20;
+    public static final int RADIUS = 2;
 
     static {
         final ItemStack itemStack = new ItemStack(Material.IRON_SHOVEL);
 
         final ItemMeta meta = Objects.requireNonNull(itemStack.getItemMeta());
-        meta.setDisplayName(ChatColor.RED + "网枪");
+        meta.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + "网枪");
+        meta.setLore(Arrays.asList(
+                ChatColor.RED + "一次性物品",
+                "按右键发射蜘蛛网，可以让距离子弹 " + RADIUS + " 格及以内的猎人暂时失去行动能力。",
+                "有射程限制，最远 " + MAX_DISTANCE + " 格方块。"
+        ));
         itemStack.setItemMeta(meta);
 
         ITEM = itemStack;
