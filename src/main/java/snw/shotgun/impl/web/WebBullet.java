@@ -59,6 +59,6 @@ public final class WebBullet extends AbstractBullet {
 
     @Override
     protected void tryToCallHitEntity(double radius) {
-        super.tryToCallHitEntity(3);
+        super.tryToCallHitEntity(2);
     }
 }
