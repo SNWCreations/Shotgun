@@ -51,7 +51,7 @@ public final class WebBullet extends AbstractBullet {
     }
 
     @Override
-    protected void hitEntity(Entity entity) {
+    protected boolean hitEntity(Entity entity) {
         if (entity instanceof Player) {
             final Team team =
                     Objects.requireNonNull(plugin.getServer().getScoreboardManager())
@@ -60,13 +60,19 @@ public final class WebBullet extends AbstractBullet {
             if (team != null) {
                 if (team.getName().equals("rfm_hunter")) {
                     new PlayerSlow(plugin, ((Player) entity)).start();
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     @Override
-    protected void tryToCallHitEntity(double radius) {
-        super.tryToCallHitEntity(2);
+    protected boolean tryToCallHitEntity(double radius) {
+        final boolean hit = super.tryToCallHitEntity(RADIUS);
+        if (hit) {
+            terminate(RemovalReason.HIT_ENTITY);
+        }
+        return hit;
     }
 }

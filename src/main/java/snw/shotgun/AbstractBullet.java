@@ -90,21 +90,23 @@ public abstract class AbstractBullet extends BukkitRunnable {
         tryToCallHitEntity(0.5);
     }
 
-    protected void tryToCallHitEntity(double radius) {
+    protected boolean tryToCallHitEntity(double radius) {
+        boolean hit = false;
         if (this.entity.isValid()) {
             for (Entity nearbyEntity : this.entity.getNearbyEntities(radius, 0.5, radius)) {
                 if (!(nearbyEntity instanceof LivingEntity) || nearbyEntity.equals(this.shooter)) {
                     continue;
                 }
 
-                hitEntity(nearbyEntity);
+                hit = hitEntity(nearbyEntity);
             }
         }
+        return hit;
     }
 
     protected abstract void tickEntity(ArmorStand entity);
 
-    protected abstract void hitEntity(Entity entity);
+    protected abstract boolean hitEntity(Entity entity);
 
     protected void terminate(RemovalReason reason) {
         if (this.entity.isValid()) {
