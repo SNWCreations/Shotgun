@@ -1,7 +1,7 @@
 package snw.shotgun;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_20_R1.CraftWorld;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.plugin.Plugin;
@@ -44,7 +44,7 @@ public abstract class AbstractBullet extends BukkitRunnable {
         final PatchedArmorStand theEntity = new PatchedArmorStand(this.origin);
         this.entity = (ArmorStand) theEntity.getBukkitEntity();
         initializeEntity(this.entity);
-        ((CraftWorld) Objects.requireNonNull(this.origin.getWorld())).getHandle().addEntity(theEntity);
+        ((CraftWorld) Objects.requireNonNull(this.origin.getWorld())).getHandle().entityManager.addNewEntity(theEntity);
         INSTANCES.add(this);
     }
 
