@@ -53,15 +53,16 @@ public final class WebBullet extends AbstractBullet {
     @Override
     protected boolean hitEntity(Entity entity) {
         if (entity instanceof Player) {
-            final Team team =
-                    Objects.requireNonNull(plugin.getServer().getScoreboardManager())
-                            .getMainScoreboard()
-                            .getEntryTeam(entity.getName());
-            if (team != null) {
-                if (team.getName().equals("rfm_hunter")) {
+//            final Team team =
+//                    Objects.requireNonNull(plugin.getServer().getScoreboardManager())
+//                            .getMainScoreboard()
+//                            .getEntryTeam(entity.getName());
+//            if (team != null) {
+//                if (team.getName().equals("rfm_hunter")) {
+            if (entity.getScoreboardTags().contains("rfm_team_hunter")) {
                     new PlayerSlow(plugin, ((Player) entity)).start();
                     return true;
-                }
+//                }
             }
         }
         return false;
